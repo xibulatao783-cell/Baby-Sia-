@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para sa Aking Paborito</title>
+    <!-- Gagamit tayo ng Google Fonts para malinis ang itsura -->
+    <link href="https://googleapis.com" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Live Falling Flowers Container -->
+    <div id="flowers-container"></div>
+
+    <div class="container">
+        <div class="envelope-wrapper">
+            <div class="envelope">
+                <div class="letter">
+                    <div class="text">
+                        <p>To be honest, home doesn't really feel like a place anymore, it's just wherever you are.</p>
+                        <p>I’m missing my favorite person today and just wanted to let you know that you're constantly on my mind.</p>
+                        <p>I hope you're having a good day, but I’d like it better if I was spending it with you.</p>
+                        <p class="signature">From: Xi</p>
+                    </div>
+                </div>
+            </div>
+            <div class="heart"></div>
+        </div>
+
+        <div class="buttons">
+            <button id="open">OPEN</button>
+            <button id="close">CLOSE</button>
+        </div>
+    </div>
+
+    <script>
+        const envelope = document.querySelector('.envelope-wrapper');
+        const btnOpen = document.querySelector('#open');
+        const btnClose = document.querySelector('#close');
+
+        btnOpen.onclick = () => envelope.classList.add('active');
+        btnClose.onclick = () => envelope.classList.remove('active');
+
+        // Live Falling Flowers Script
+        function createFlower() {
+            const flowers = ['🌸', '🌹', '🌺', '🌷', '✨'];
+            const flower = document.createElement('div');
+            flower.classList.add('flower');
+            flower.innerHTML = flowers[Math.floor(Math.random() * flowers.length)];
+            flower.style.left = Math.random() * 100 + 'vw';
+            flower.style.animationDuration = Math.random() * 2 + 3 + 's'; 
+            document.getElementById('flowers-container').appendChild(flower);
+            setTimeout(() => flower.remove(), 5000);
+        }
+        setInterval(createFlower, 300);
+    </script>
+</body>
+</html>
