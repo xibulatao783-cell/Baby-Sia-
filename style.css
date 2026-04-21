@@ -1,0 +1,140 @@
+:root {
+    --baby-blue: #a2d2ff;
+    --white: #ffffff;
+    --envelope-body: #ffafcc;
+    --envelope-flap: #ffc8dd;
+    --text-color: #4a4e69;
+    --accent: #ff4d6d;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--baby-blue);
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+}
+
+.container {
+    text-align: center;
+}
+
+.envelope-wrapper {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    background-color: var(--envelope-body);
+    margin-bottom: 50px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Flap ng Envelope */
+.envelope-wrapper::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    border-top: 100px solid var(--envelope-flap);
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    transform-origin: top;
+    transition: transform 0.5s ease;
+}
+
+/* Pocket ng Envelope */
+.envelope-wrapper::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 3;
+    border-left: 150px solid #ffc8dd;
+    border-right: 150px solid #ffc8dd;
+    border-bottom: 100px solid #ffc8dd;
+    border-top: 100px solid transparent;
+}
+
+.letter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 90%;
+    background-color: var(--white);
+    z-index: 2;
+    transition: 0.7s ease-in-out;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--text-color);
+}
+
+.signature {
+    text-align: right;
+    margin-top: 10px;
+    font-weight: bold;
+    color: var(--accent);
+}
+
+/* Animation States */
+.envelope-wrapper.active::before {
+    transform: rotateX(180deg);
+    z-index: 1;
+}
+
+.envelope-wrapper.active .letter {
+    transform: translate(-50%, -130%);
+    z-index: 2;
+}
+
+.buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+button {
+    padding: 10px 30px;
+    border: none;
+    border-radius: 25px;
+    background-color: var(--white);
+    color: var(--text-color);
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+button:hover {
+    background-color: var(--accent);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Floating Flowers Style */
+.flower {
+    position: absolute;
+    top: -10%;
+    font-size: 24px;
+    user-select: none;
+    z-index: -1;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to { transform: translateY(110vh) rotate(360deg); }
+}
